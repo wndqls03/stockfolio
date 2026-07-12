@@ -7,6 +7,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient<FinnhubService>();
+
 // ASP.NET Core의 기본 설정을 읽고, 인증/DB/의존성 주입을 등록합니다.
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
