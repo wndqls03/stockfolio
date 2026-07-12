@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ASP.NET Core의 기본 설정을 읽고, 인증/DB/의존성 주입을 등록합니다.
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCors", policy =>
@@ -48,12 +47,6 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
-
-// 개발 환경에서는 Swagger/OpenAPI와 함께 바로 확인할 수 있게 합니다.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
 app.UseHttpsRedirection();
 app.UseCors("DevCors");
