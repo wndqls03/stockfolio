@@ -1,0 +1,19 @@
+# .NET
+backend/**/bin/
+backend/**/obj/
+*.user
+
+# Node
+node_modules/
+frontend/dist/
+
+# Env / secrets
+.env
+.env.local
+appsettings.*.local.json
+
+# OS / IDE
+.vs/
+.vscode/
+*.swp
+.DS_Store
