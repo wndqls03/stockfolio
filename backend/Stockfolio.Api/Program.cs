@@ -11,15 +11,16 @@ builder.Services.AddHttpClient<FinnhubService>();
 
 // Reads ASP.NET Core's default configuration and registers auth/DB/dependency injection.
 builder.Services.AddControllers();
+
+var allowedOrigins = (builder.Configuration["Cors:AllowedOrigins"]
+        ?? "http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174")
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("DevCors", policy =>
+    options.AddPolicy("AppCors", policy =>
     {
-        policy.WithOrigins(
-                "http://localhost:5173",
-                "http://localhost:5174",
-                "http://127.0.0.1:5173",
-                "http://127.0.0.1:5174")
+        policy.WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -54,8 +55,7 @@ builder.Services.AddScoped<PortfolioService>();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseCors("DevCors");
+app.UseCors("AppCors");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
