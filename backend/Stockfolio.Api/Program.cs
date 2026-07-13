@@ -29,7 +29,9 @@ builder.Services.AddDbContext<StockfolioDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "stockfolio-dev-secret-key-please-change";
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException("Jwt:Key가 설정되지 않았습니다.");
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -47,6 +49,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<PortfolioService>();
 
 var app = builder.Build();
 

@@ -12,6 +12,14 @@ public class TransactionService
     }
     public void Buy(int userId, string stockSymbol, decimal quantity, decimal pricePerShare)
     {
+        if(quantity <=0)
+        {
+            throw new InvalidOperationException("수량은 0보다 커야 합니다.");
+        }
+        if(pricePerShare <=0)
+        {
+            throw new InvalidOperationException("유효하지 않은 종목입니다.");
+        }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
         {
@@ -54,6 +62,14 @@ public class TransactionService
     }
     public void Sell(int userId, string stockSymbol, decimal quantity, decimal pricePerShare)
     {
+        if (quantity <= 0)
+        {
+            throw new InvalidOperationException("수량은 0보다 커야 합니다.");
+        }
+        if(pricePerShare <=0)
+        {
+            throw new InvalidOperationException("유효하지 않은 종목입니다.");
+        }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
         {
@@ -81,5 +97,13 @@ public class TransactionService
         };   
         _dbContext.Transactions.Add(transaction);
         _dbContext.SaveChanges();
+    }
+
+    public List<Transaction> GetTransactions(int userId)
+    {
+        return _dbContext.Transactions
+            .Where(t=> t.UserId == userId)
+            .OrderByDescending(t => t.CreatedAt)
+            .ToList();
     }
 }

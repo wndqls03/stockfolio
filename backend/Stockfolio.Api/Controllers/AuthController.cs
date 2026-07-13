@@ -31,13 +31,13 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginRequest request)
     {
-        var token = _authService.Login(request.Email, request.Password);
-        if (token is null)
+        var user = _authService.Login(request.Email, request.Password);
+        if (user is null)
         {
             return Unauthorized(new { message = "이메일 또는 비밀번호가 올바르지 않습니다." });
         }
 
-        return Ok(new { token });
+        return Ok(new { user.Id, user.Email, user.CashBalance, token = _authService.CreateToken(user) });
     }
 }
 

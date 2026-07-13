@@ -21,7 +21,8 @@ public class AuthService
 
     public string CreateToken(User user)
     {
-        var jwtKey = _configuration["Jwt:Key"] ?? "dev-secret-key-for-stockfolio-project";
+        var jwtKey = _configuration["Jwt:Key"]
+            ?? throw new InvalidOperationException("Jwt:Key가 설정되지 않았습니다.");
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -61,7 +62,7 @@ public class AuthService
         return user;
     }
 
-    public string? Login(string email, string password)
+    public User? Login(string email, string password)
     {
         var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
         if (user is null)
@@ -70,6 +71,6 @@ public class AuthService
         }
 
         var isValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
-        return isValid ? CreateToken(user) : null;
+        return isValid ? user : null;
     }
 }
