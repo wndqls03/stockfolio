@@ -28,6 +28,7 @@ function DashboardPage() {
           <h1 className="text-xl font-bold text-gray-900">Dashboard</h1>
           <div className="flex gap-4">
             <Link to="/trade" className="text-blue-600">Trade</Link>
+            <Link to="/history" className="text-blue-600">History</Link>
             <button onClick={handleLogout} className="text-red-600">Logout</button>
           </div>
         </div>
