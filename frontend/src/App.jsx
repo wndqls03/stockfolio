@@ -4,7 +4,7 @@ import './App.css'
 const BACKEND_URL = 'http://localhost:5063'
 
 function App() {
-  const [status, setStatus] = useState<'checking' | 'connected' | 'error'>('checking')
+  const [status, setStatus] = useState('checking')
   const [message, setMessage] = useState('백엔드 연결 확인 중...')
   const [details, setDetails] = useState('')
 
