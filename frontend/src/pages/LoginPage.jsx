@@ -54,7 +54,7 @@ function LoginPage() {
           Log In
         </button>
 
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm text-center mt-4 text-gray-600">
           Don't have an account? <Link to="/register" className="text-blue-600">Sign Up</Link>
         </p>
       </form>
