@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient<FinnhubService>();
 
-// ASP.NET Core의 기본 설정을 읽고, 인증/DB/의존성 주입을 등록합니다.
+// Reads ASP.NET Core's default configuration and registers auth/DB/dependency injection.
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
@@ -30,7 +30,7 @@ builder.Services.AddDbContext<StockfolioDbContext>(options =>
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
 var jwtKey = builder.Configuration["Jwt:Key"]
-    ?? throw new InvalidOperationException("Jwt:Key가 설정되지 않았습니다.");
+    ?? throw new InvalidOperationException("Jwt:Key is not configured.");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

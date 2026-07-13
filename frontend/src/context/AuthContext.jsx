@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 import api from '../lib/api';
 
-// 1. Context 객체 생성 — 함수 컴포넌트 아님, 그냥 값을 담는 그릇
+// 1. Create the Context object — not a component, just a value container
 const AuthContext = createContext(null);
 
-// 2. Provider — 일반 함수 컴포넌트 (function + return JSX)
+// 2. Provider — a regular function component (function + return JSX)
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -12,8 +12,8 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     const response = await api.post('/auth/login', { email, password });
     const { token, ...userData } = response.data;
-    // { token, ...userData } : 응답 객체에서 token만 따로 꺼내고,
-    // 나머지 필드(id, email, cashBalance)는 통째로 userData에 담는 구조 분해 문법.
+    // { token, ...userData } : destructuring that pulls token out on its own,
+    // while the rest of the fields (id, email, cashBalance) land together in userData.
 
     localStorage.setItem('token', token);
     setToken(token);
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-// 3. 커스텀 훅 — 함수는 맞는데 JSX를 반환하지 않음 (컴포넌트가 아님)
+// 3. Custom hook — a function, but doesn't return JSX (not a component)
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

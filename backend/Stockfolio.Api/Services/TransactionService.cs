@@ -14,21 +14,21 @@ public class TransactionService
     {
         if(quantity <=0)
         {
-            throw new InvalidOperationException("수량은 0보다 커야 합니다.");
+            throw new InvalidOperationException("Quantity must be greater than zero.");
         }
         if(pricePerShare <=0)
         {
-            throw new InvalidOperationException("유효하지 않은 종목입니다.");
+            throw new InvalidOperationException("Invalid stock symbol.");
         }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
         {
-            throw new InvalidOperationException("존재하지 않는 사용자입니다.");
+            throw new InvalidOperationException("User not found.");
         }
         var totalCost = quantity*pricePerShare;
         if (user.CashBalance < totalCost)
         {
-            throw new InvalidOperationException("잔액이 부족합니다.");
+            throw new InvalidOperationException("Insufficient cash balance.");
         }
         var existingHolding= _dbContext.Holdings.FirstOrDefault(h=> h.UserId == userId && h.Symbol == stockSymbol);
         if(existingHolding!=null)
@@ -64,21 +64,21 @@ public class TransactionService
     {
         if (quantity <= 0)
         {
-            throw new InvalidOperationException("수량은 0보다 커야 합니다.");
+            throw new InvalidOperationException("Quantity must be greater than zero.");
         }
         if(pricePerShare <=0)
         {
-            throw new InvalidOperationException("유효하지 않은 종목입니다.");
+            throw new InvalidOperationException("Invalid stock symbol.");
         }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
         {
-            throw new InvalidOperationException("존재하지 않는 사용자입니다.");
+            throw new InvalidOperationException("User not found.");
         }
         var existingHolding = _dbContext.Holdings.FirstOrDefault(h => h.UserId == userId && h.Symbol == stockSymbol);
         if (existingHolding == null || existingHolding.Quantity < quantity)
         {
-            throw new InvalidOperationException("보유 주식이 부족합니다.");
+            throw new InvalidOperationException("Insufficient shares held.");
         }
         existingHolding.Quantity -= quantity;
         if (existingHolding.Quantity == 0)

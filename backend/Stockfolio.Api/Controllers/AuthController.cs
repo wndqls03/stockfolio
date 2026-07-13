@@ -34,7 +34,7 @@ public class AuthController : ControllerBase
         var user = _authService.Login(request.Email, request.Password);
         if (user is null)
         {
-            return Unauthorized(new { message = "이메일 또는 비밀번호가 올바르지 않습니다." });
+            return Unauthorized(new { message = "Invalid email or password." });
         }
 
         return Ok(new { user.Id, user.Email, user.CashBalance, token = _authService.CreateToken(user) });

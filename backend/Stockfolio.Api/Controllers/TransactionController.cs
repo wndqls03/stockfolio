@@ -27,7 +27,7 @@ public class TransactionController : ControllerBase
         try
         {
             _transactionService.Buy(userId, request.Symbol, request.Quantity, quote.CurrentPrice);
-            return Ok(new { message = "주식 매수 성공" });
+            return Ok(new { message = "Buy order completed" });
         }
         catch (InvalidOperationException ex)
         {
@@ -43,7 +43,7 @@ public class TransactionController : ControllerBase
         try
         {
             _transactionService.Sell(userId, request.Symbol, request.Quantity, quote.CurrentPrice);
-            return Ok(new { message = "주식 매도 성공" });
+            return Ok(new { message = "Sell order completed" });
         }
         catch (InvalidOperationException ex)
         {

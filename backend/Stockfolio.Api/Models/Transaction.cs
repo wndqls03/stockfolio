@@ -1,6 +1,6 @@
 namespace Stockfolio.Api.Models;
 
-// 매수/매도 기록을 남깁니다. 포트폴리오의 히스토리 화면과 분석에 사용됩니다.
+// Records a buy/sell transaction. Used by the portfolio history screen and analytics.
 public class Transaction
 {
     public int Id { get; set; }

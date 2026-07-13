@@ -1,4 +1,4 @@
-using Stockfolio.Api.Models; // Quote/Search 결과를 담을 타입을 따로 만든다면
+using Stockfolio.Api.Models;
 
 namespace Stockfolio.Api.Services;
 
@@ -25,6 +25,6 @@ public class FinnhubService
         var encodedSymbol = Uri.EscapeDataString(symbol);
         var url = $"https://finnhub.io/api/v1/quote?symbol={encodedSymbol}&token={apiKey}";
         var result = await _httpClient.GetFromJsonAsync<StockQuote>(url);
-        return result ?? throw new Exception("Finnhub 응답을 받지 못했습니다.");
+        return result ?? throw new Exception("No response received from Finnhub.");
     }
 }

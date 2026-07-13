@@ -7,7 +7,7 @@ using Stockfolio.Api.Models;
 
 namespace Stockfolio.Api.Services;
 
-// 인증과 JWT 발급을 담당하는 서비스입니다. 로그인/회원가입 로직을 한 곳에 모아 관리합니다.
+// Handles authentication and JWT issuance. Centralizes login/register logic in one place.
 public class AuthService
 {
     private readonly StockfolioDbContext _dbContext;
@@ -22,7 +22,7 @@ public class AuthService
     public string CreateToken(User user)
     {
         var jwtKey = _configuration["Jwt:Key"]
-            ?? throw new InvalidOperationException("Jwt:Key가 설정되지 않았습니다.");
+            ?? throw new InvalidOperationException("Jwt:Key is not configured.");
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -47,7 +47,7 @@ public class AuthService
         var existing = _dbContext.Users.FirstOrDefault(u => u.Email == email);
         if (existing is not null)
         {
-            throw new InvalidOperationException("이미 사용 중인 이메일입니다.");
+            throw new InvalidOperationException("This email is already in use.");
         }
 
         var user = new User

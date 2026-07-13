@@ -3,7 +3,7 @@ using Stockfolio.Api.Models;
 
 namespace Stockfolio.Api.Data;
 
-// EF Core의 단일 진입점입니다. 엔티티를 데이터베이스에 매핑해 줍니다.
+// The single entry point for EF Core. Maps entities to the database.
 public class StockfolioDbContext : DbContext
 {
     public StockfolioDbContext(DbContextOptions<StockfolioDbContext> options) : base(options)
