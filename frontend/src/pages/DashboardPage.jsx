@@ -40,7 +40,7 @@ function DashboardPage() {
           </p>
           <div className="flex justify-between mt-2 text-sm text-gray-600">
             <span>Cash: ${ summary?.cashBalance }</span>
-            <span>Return: {summary?.totalReturnPercent}%</span>
+            <span>Return: {summary?.totalReturnPercent?.toFixed(2)}%</span>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ function DashboardPage() {
                 <div className="flex justify-between">
                   <span>{h.symbol}</span>
                   <span className={h.unrealizedPL >= 0 ? 'text-green-600' : 'text-red-600'}>
-                    {h.unrealizedPL >= 0 ? '+' : ''}${h.unrealizedPL} ({h.unrealizedPLPercent}%)
+                    {h.unrealizedPL >= 0 ? '+' : ''}${h.unrealizedPL} ({h.unrealizedPLPercent.toFixed(2)}%)
                   </span>
                 </div>
                 <div className="text-sm text-gray-600">
