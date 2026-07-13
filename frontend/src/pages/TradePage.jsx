@@ -71,7 +71,9 @@ function TradePage() {
                 {quote && (
           <div className="bg-white p-4 rounded shadow text-gray-900">
             <p className="font-bold text-gray-900">{selectedResult}</p>
-            <p>Current price: ${quote.currentPrice}</p>
+            <p className="text-gray-900">Current price: ${quote.currentPrice}</p>
+            <p className="text-xs text-gray-500">Delayed ~20 min</p>
+
 
             <input
               type="number"
