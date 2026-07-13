@@ -20,13 +20,19 @@ public class PortfolioService
         foreach (var holding in holdings)
         {
             var quote = await _finnhubService.GetQuoteAsync(holding.Symbol);
+            var marketValue = holding.Quantity * quote.CurrentPrice;
+            var costBasis = holding.Quantity * holding.AvgBuyPrice;
+            var unrealizedPL = marketValue - costBasis;
+
             holdingViews.Add(new HoldingView
             {
                 Symbol = holding.Symbol,
                 Quantity = holding.Quantity,
                 AvgBuyPrice = holding.AvgBuyPrice,
                 CurrentPrice = quote.CurrentPrice,
-                MarketValue = holding.Quantity * quote.CurrentPrice
+                MarketValue = marketValue,
+                UnrealizedPL = unrealizedPL,
+                UnrealizedPLPercent = costBasis > 0 ? (unrealizedPL / costBasis) * 100 : 0
             });
         }
         return holdingViews;
