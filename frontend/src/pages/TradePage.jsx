@@ -1,4 +1,5 @@
 import { useState} from "react";
+import { Link } from "react-router-dom";
 
 import api from "../lib/api";
 
@@ -42,7 +43,8 @@ function TradePage() {
         <div className="min-h-screen bg-gray-50 px-4 py-8">
             <div className="max-w-md mx-auto">
                 <h1 className="text-xl font-bold mb-4">Stock Trading</h1>
-        
+                <Link to="/dashboard" className="text-blue-600">Back to Dashboard</Link>
+
                 <form onSubmit={handleSearch} className="flex gap-2 mb-4">
                     <input
                         type="text"
