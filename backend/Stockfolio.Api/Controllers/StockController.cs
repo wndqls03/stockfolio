@@ -24,6 +24,15 @@ public class StockController : ControllerBase
     public async Task<IActionResult> GetQuote([FromQuery] string symbol)
     {
         var result = await _finnhubService.GetQuoteAsync(symbol);
-        return Ok(result);
+        return Ok(new
+        {
+            currentPrice = result.CurrentPrice,
+            change = result.Change,
+            percentChange = result.PercentChange,
+            high = result.High,
+            low = result.Low,
+            open = result.Open,
+            previousClose = result.PreviousClose
+        });
     }
 }
