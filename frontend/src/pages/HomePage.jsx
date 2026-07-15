@@ -63,6 +63,57 @@ function HomePage() {
                     </div>
                 </div>
 
+                <div className="grid sm:grid-cols-2 gap-6 mb-16">
+                    <div className="bg-ink-surface border border-ink-border rounded-2xl p-8">
+                        <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-4">Search a ticker</p>
+                        <div className="flex items-center bg-ink-surface-2 border border-ink-border rounded-full px-5 py-3 mb-4">
+                            <span className="font-mono text-base flex items-center">
+                                <span className="demo-caret-text">AAPL</span>
+                                <span className="demo-caret-bar inline-block w-[2px] h-5 bg-ink-accent-strong ml-0.5"></span>
+                            </span>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <div className="demo-result flex justify-between items-baseline px-4 py-3 bg-ink-surface-2 rounded-lg">
+                                <span className="font-bold text-sm">AAPL</span>
+                                <span className="text-sm text-ink-muted">Apple Inc</span>
+                            </div>
+                            <div className="demo-result flex justify-between items-baseline px-4 py-3 bg-ink-surface-2 rounded-lg">
+                                <span className="font-bold text-sm">AAPL.TO</span>
+                                <span className="text-sm text-ink-muted">Apple Inc-CDR</span>
+                            </div>
+                            <div className="demo-result flex justify-between items-baseline px-4 py-3 bg-ink-surface-2 rounded-lg">
+                                <span className="font-bold text-sm">AAPL.MX</span>
+                                <span className="text-sm text-ink-muted">Apple Inc</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-ink-surface border border-ink-border rounded-2xl p-8">
+                        <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-4">Transaction history</p>
+                        <div className="flex justify-between items-center py-4 border-t border-ink-border">
+                            <div>
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-ink-buy-soft text-ink-buy">BUY</span>
+                                <div className="font-mono text-sm text-ink-muted mt-2">3 sh @ $315.32</div>
+                            </div>
+                            <span className="font-bold text-base">AAPL</span>
+                        </div>
+                        <div className="flex justify-between items-center py-4 border-t border-ink-border">
+                            <div>
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-ink-sell-soft text-ink-sell">SELL</span>
+                                <div className="font-mono text-sm text-ink-muted mt-2">2 sh @ $407.76</div>
+                            </div>
+                            <span className="font-bold text-base">TSLA</span>
+                        </div>
+                        <div className="flex justify-between items-center py-4 border-t border-ink-border">
+                            <div>
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-ink-buy-soft text-ink-buy">BUY</span>
+                                <div className="font-mono text-sm text-ink-muted mt-2">2 sh @ $407.76</div>
+                            </div>
+                            <span className="font-bold text-base">TSLA</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="grid sm:grid-cols-3 gap-4">
                     <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
                         <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">01</p>
