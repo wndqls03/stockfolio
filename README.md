@@ -1,17 +1,25 @@
 # StockFolio
 
-StockFolio is a two-week internship portfolio project that simulates stock trading with a virtual account.
+[![Backend Tests](https://github.com/wndqls03/stockfolio/actions/workflows/test.yml/badge.svg)](https://github.com/wndqls03/stockfolio/actions/workflows/test.yml)
 
-## Goals
-- Build a responsive web app for mock stock trading
-- Demonstrate authentication, CRUD, external API integration, and basic portfolio calculations
-- Deliver a deployable MVP with a clear README and demo flow
+🔗 **Live Demo:** [https://stockfolio-nz.vercel.app](https://stockfolio-nz.vercel.app)
+
+StockFolio is a mock stock trading app that simulates a portfolio with a virtual account.
+
+## Features
+- **Auth** — email/password sign-up and login (JWT). New accounts start with a virtual $100,000 in cash.
+- **Stock search** — look up real symbols and current prices via Finnhub, proxied through the backend so the API key never reaches the browser.
+- **Buy / sell** — trade at the live quoted price; cash balance and average cost basis update automatically.
+- **Portfolio dashboard** — total assets, cash, overall return %, and per-holding unrealized P/L.
+- **Transaction history** — full list of past buys and sells.
+- **Responsive UI** — usable on both desktop and mobile.
 
 ## Stack
-- Frontend: React + TypeScript + Vite
+- Frontend: React + Vite (Tailwind CSS)
 - Backend: ASP.NET Core Web API + C#
-- Database: MySQL
+- Database: MySQL (EF Core + Pomelo)
 - External data: Finnhub API
+- Hosting: Vercel (frontend), Railway (backend + MySQL)
 
 ## Run locally
 
@@ -36,23 +44,19 @@ npm run dev
 > dotnet user-secrets set "APIKeys:Finnhub_API" "YOUR_FINNHUB_KEY"
 > ```
 
-## Progress
+## Tests
 
-### Done
-- ASP.NET Core Web API project scaffolded, EF Core + Pomelo MySQL configured
-- `User` / `Holding` / `Transaction` entities and `StockfolioDbContext` (decimal column types match the spec)
-- JWT authentication: `POST /api/auth/register` (grants $100,000 virtual seed cash) and `POST /api/auth/login`
-- Passwords hashed with BCrypt
-- Dev CORS policy for the Vite frontend
-- React + TypeScript + Vite frontend scaffolded
+```bash
+cd backend/Stockfolio.Api.Tests
+dotnet test
+```
 
-### Next
-- EF Core migration + first MySQL schema push
-- Finnhub proxy endpoints (`/api/stocks/search`, `/api/stocks/quote`) via `IHttpClientFactory`
-- Buy/sell service logic (`PortfolioService`, `TransactionService`)
-- Portfolio/summary/transaction-history endpoints
-- Frontend: auth screens, stock search + trade form, portfolio dashboard
+## Possible future additions
+- Stock detail page with a price chart
+- Watchlist
+- Portfolio allocation pie chart
+- Asset value over time graph
 
 ## Notes
-- Market data is delayed because the project uses Finnhub's free tier.
-- API keys should remain on the backend side.
+- Market data is delayed (Finnhub free tier), not real-time.
+- API keys stay server-side only — the frontend never sees them.
