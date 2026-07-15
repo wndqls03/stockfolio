@@ -7,7 +7,6 @@ import HomePage from './pages/HomePage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
 import TradePage from './pages/TradePage.jsx';
 import HistoryPage from './pages/HistoryPage.jsx';
-import './App.css'
 
 function App() {
 

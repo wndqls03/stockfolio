@@ -1,37 +1,33 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../lib/api';
 
 function HistoryPage() {
     const [transactions, setTransactions] = useState([]);
-    const navigate = useNavigate();
     useEffect(() => {
         api.get('/transactions').then((res)=> setTransactions(res.data));
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-50 px-4 py-8">
-            <div className="max-w-md mx-auto">
-                <h1 className="text-xl font-bold text-gray-900 mb-4">Transaction History</h1>
-                <Link to="/dashboard" className="text-blue-600">Back</Link>
-                <ul className="bg-white rounded shadow">
+        <div className="min-h-screen bg-ink-bg text-ink">
+            <div className="max-w-3xl mx-auto px-6 py-10">
+                <Link to="/dashboard" className="text-sm text-ink-muted font-semibold no-underline">&larr; Dashboard</Link>
+                <h1 className="text-4xl font-extrabold tracking-tight mt-4 mb-7">Transaction History</h1>
+
+                <div className="border border-ink-border rounded-2xl overflow-hidden">
                     {transactions.map((t) => (
-                        <li key={t.id} className="p-4 border-b text-gray-900">
-                            <div className="flex justify-between">
-                                <span className={t.type === 'BUY' ? 'text-green-600' : 'text-red-600'}>
+                        <div key={t.id} className="px-6 py-5 border-b border-ink-border last:border-b-0 flex justify-between items-start">
+                            <div>
+                                <span className={`inline-flex items-center px-3 py-1 rounded-full font-mono text-xs font-bold tracking-wide ${t.type === 'BUY' ? 'bg-ink-buy-soft text-ink-buy' : 'bg-ink-sell-soft text-ink-sell'}`}>
                                     {t.type}
                                 </span>
-                                <span>{t.symbol}</span>
+                                <div className="font-mono text-sm text-ink-muted mt-2">{t.quantity} sh @ ${t.price}</div>
+                                <div className="text-sm text-ink-muted mt-1">{new Date(t.createdAt).toLocaleString()}</div>
                             </div>
-                            <div className="text-sm text-gray-600">
-                                {t.quantity} shares @ ${t.price}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                                {new Date(t.createdAt).toLocaleString()}
-                            </div>
-                        </li>
+                            <span className="font-bold text-lg">{t.symbol}</span>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );

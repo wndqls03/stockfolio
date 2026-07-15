@@ -21,44 +21,47 @@ function LoginPage() {
         }
     };
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white p-6 rounded-lg shadow">
-        <h1 className="text-xl font-bold mb-4">Log In</h1>
+        <div className="min-h-screen bg-ink-bg text-ink flex items-center">
+            <div className="w-full max-w-md mx-auto px-6">
+                <span className="block text-center font-extrabold text-xl mb-9">StockFolio</span>
+                <form onSubmit={handleSubmit} className="bg-ink-surface border border-ink-border rounded-2xl px-8 py-10">
+                    <h1 className="text-3xl font-extrabold tracking-tight mb-7">Log In</h1>
 
-        {/* Nothing renders when error is an empty string — JS short-circuit rendering with && */}
-        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+                    {/* Nothing renders when error is an empty string — JS short-circuit rendering with && */}
+                    {error && <p className="text-ink-sell text-sm mb-4">{error}</p>}
 
-        <label className="block mb-3">
-          <span className="text-sm text-gray-600">Email</span>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full mt-1 border rounded px-3 py-2 bg-white text-gray-900"
-          />
-        </label>
+                    <label className="block mb-5">
+                        <span className="block text-sm font-semibold text-ink-muted mb-2">Email</span>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="w-full border border-ink-border rounded-lg px-4 py-3.5 text-base bg-ink-surface-2 text-ink"
+                        />
+                    </label>
 
-        <label className="block mb-4">
-          <span className="text-sm text-gray-600">Password</span>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full mt-1 border rounded px-3 py-2 bg-white text-gray-900"
-          />
-        </label>
+                    <label className="block mb-7">
+                        <span className="block text-sm font-semibold text-ink-muted mb-2">Password</span>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="w-full border border-ink-border rounded-lg px-4 py-3.5 text-base bg-ink-surface-2 text-ink"
+                        />
+                    </label>
 
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded">
-          Log In
-        </button>
+                    <button type="submit" className="w-full bg-ink text-ink-bg py-4 rounded-xl font-bold text-base mb-5">
+                        Log In
+                    </button>
 
-        <p className="text-sm text-center mt-4 text-gray-600">
-          Don't have an account? <Link to="/register" className="text-blue-600">Sign Up</Link>
-        </p>
-      </form>
-    </div>
+                    <p className="text-sm text-center text-ink-muted">
+                        Don't have an account? <Link to="/register" className="text-ink-accent-strong font-bold no-underline">Sign Up</Link>
+                    </p>
+                </form>
+            </div>
+        </div>
     );
 }
 

@@ -21,48 +21,44 @@ function DashboardPage() {
   }
 
   return(
-    <div className="min-h-screen bg-gray-50 px-4 py-8">
-      <div className="max-w-md mx-auto">
+    <div className="min-h-screen bg-ink-bg text-ink">
+      <div className="max-w-3xl mx-auto px-6 py-10">
 
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-xl font-bold text-gray-900">Dashboard</h1>
-          <div className="flex gap-4">
-            <Link to="/trade" className="text-blue-600">Trade</Link>
-            <Link to="/history" className="text-blue-600">History</Link>
-            <button onClick={handleLogout} className="text-red-600">Logout</button>
+        <div className="flex justify-between items-center mb-10">
+          <span className="font-extrabold text-xl">StockFolio</span>
+          <div className="flex gap-6 text-base">
+            <Link to="/trade" className="text-ink-accent-strong font-semibold no-underline">Trade</Link>
+            <Link to="/history" className="text-ink-accent-strong font-semibold no-underline">History</Link>
+            <button onClick={handleLogout} className="text-ink-sell font-semibold bg-transparent border-none p-0 cursor-pointer">Log Out</button>
           </div>
         </div>
 
-        <div>
-          <p className="text-gray-600 text-sm">Total Assets</p>
-          <p className="text-2xl font-bold text-gray-900">
+        <div className="pt-2 pb-9 border-b border-ink-border mb-8">
+          <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-2">Total Assets</p>
+          <p className="font-mono text-6xl font-extrabold tracking-tight mb-4">
             ${ summary?.totalAssets}
           </p>
-          <div className="flex justify-between mt-2 text-sm text-gray-600">
-            <span>Cash: ${ summary?.cashBalance }</span>
-            <span>Return: {summary?.totalReturnPercent?.toFixed(2)}%</span>
+          <div className="flex gap-8 text-base">
+            <span>Cash <b className="font-mono font-semibold text-ink">${ summary?.cashBalance }</b></span>
+            <span className="text-ink-buy">Return <b className="font-mono font-semibold text-ink-buy">+{summary?.totalReturnPercent?.toFixed(2)}%</b></span>
           </div>
         </div>
 
-        <div>
-          <h2 className="text-lg font-bold text-gray-900 p-4 border-b">Holdings</h2>
-          <p className="text-xs text-gray-500 px-4 pt-2">Prices delayed ~20 min, not real-time</p>
+        <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-1.5">Holdings</p>
+        <p className="text-sm text-ink-muted mb-5">Prices delayed ~20 min, not real-time</p>
 
-          <ul>
-            { holdings.map((h) => (
-              <li key={h.symbol} className="p-4 border-b text-gray-900">
-                <div className="flex justify-between">
-                  <span>{h.symbol}</span>
-                  <span className={h.unrealizedPL >= 0 ? 'text-green-600' : 'text-red-600'}>
-                    {h.unrealizedPL >= 0 ? '+' : ''}${h.unrealizedPL} ({h.unrealizedPLPercent.toFixed(2)}%)
-                  </span>
-                </div>
-                <div className="text-sm text-gray-600">
-                  {h.quantity} shares @ ${h.avgBuyPrice} (now ${h.currentPrice})
-                </div>
-              </li>
-            )) }
-          </ul>
+        <div className="border border-ink-border rounded-2xl overflow-hidden">
+          { holdings.map((h) => (
+            <div key={h.symbol} className="px-6 py-5 border-b border-ink-border last:border-b-0 flex justify-between items-center">
+              <div>
+                <div className="font-bold text-lg">{h.symbol}</div>
+                <div className="font-mono text-sm text-ink-muted mt-1">{h.quantity} sh @ ${h.avgBuyPrice} &rarr; ${h.currentPrice}</div>
+              </div>
+              <span className={`font-mono text-lg font-semibold ${h.unrealizedPL >= 0 ? 'text-ink-buy' : 'text-ink-sell'}`}>
+                {h.unrealizedPL >= 0 ? '+' : ''}${h.unrealizedPL} ({h.unrealizedPLPercent.toFixed(2)}%)
+              </span>
+            </div>
+          )) }
         </div>
 
       </div>
