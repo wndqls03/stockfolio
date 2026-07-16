@@ -40,7 +40,7 @@ function DashboardPage() {
           </p>
           <div className="flex gap-8 text-base">
             <span>Cash <b className="font-mono font-semibold text-ink">${ summary?.cashBalance }</b></span>
-            <span className="text-ink-buy">Return <b className="font-mono font-semibold text-ink-buy">+{summary?.totalReturnPercent?.toFixed(2)}%</b></span>
+            <span className={summary?.totalReturnPercent >= 0 ? 'text-ink-buy' : 'text-ink-sell'}>Return <b className={`font-mono font-semibold ${summary?.totalReturnPercent >= 0 ? 'text-ink-buy' : 'text-ink-sell'}`}>{summary?.totalReturnPercent >= 0 ? '+' : ''}{summary?.totalReturnPercent?.toFixed(2)}%</b></span>
           </div>
         </div>
 
