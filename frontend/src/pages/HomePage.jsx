@@ -31,7 +31,7 @@ function HomePage() {
                     Practice trading.<br />Zero real risk.
                 </h1>
                 <p className="text-ink text-lg leading-relaxed mb-10 max-w-xl">
-                    Search real stocks, trade with a virtual $100,000, and track every position as prices move — no real money, ever.
+                    Search real stocks, trade with a virtual $100,000, and track every position as prices move.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 mb-16">
@@ -39,7 +39,7 @@ function HomePage() {
                         to="/register"
                         className="block text-center py-4 px-8 rounded-xl font-bold text-base no-underline bg-ink text-ink-bg"
                     >
-                        Sign Up — it's free
+                        Sign Up
                     </Link>
                     <Link
                         to="/login"
@@ -49,8 +49,26 @@ function HomePage() {
                     </Link>
                 </div>
 
+                <div className="grid sm:grid-cols-3 gap-4 mb-16">
+                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
+                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">01</p>
+                        <h3 className="text-lg font-bold mb-2">Search real stocks</h3>
+                        <p className="text-sm text-ink-muted leading-relaxed">Look up any symbol and see current market prices, powered by live market data.</p>
+                    </div>
+                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
+                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">02</p>
+                        <h3 className="text-lg font-bold mb-2">Trade with virtual cash</h3>
+                        <p className="text-sm text-ink-muted leading-relaxed">Every account starts with $100,000 in play money. Buy and sell without risking a cent.</p>
+                    </div>
+                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
+                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">03</p>
+                        <h3 className="text-lg font-bold mb-2">Track your portfolio</h3>
+                        <p className="text-sm text-ink-muted leading-relaxed">Watch your holdings, gains, and losses update as the market moves.</p>
+                    </div>
+                </div>
+
                 <div className="bg-ink-surface border border-ink-border rounded-2xl p-8 mb-16 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)]">
-                    <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-4">Your portfolio</p>
+                    <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mb-4">Dashboard</p>
                     <p className="font-mono text-4xl font-extrabold mb-2">$100,231.84</p>
                     <p className="font-mono text-sm text-ink-buy mb-6">+0.23% today</p>
                     <div className="flex justify-between items-center py-4 border-t border-ink-border">
@@ -111,24 +129,6 @@ function HomePage() {
                             </div>
                             <span className="font-bold text-base">TSLA</span>
                         </div>
-                    </div>
-                </div>
-
-                <div className="grid sm:grid-cols-3 gap-4">
-                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
-                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">01</p>
-                        <h3 className="text-lg font-bold mb-2">Search real stocks</h3>
-                        <p className="text-sm text-ink-muted leading-relaxed">Look up any symbol and see current market prices, powered by live market data.</p>
-                    </div>
-                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
-                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">02</p>
-                        <h3 className="text-lg font-bold mb-2">Trade with virtual cash</h3>
-                        <p className="text-sm text-ink-muted leading-relaxed">Every account starts with $100,000 in play money. Buy and sell without risking a cent.</p>
-                    </div>
-                    <div className="bg-ink-surface border border-ink-border rounded-xl p-6">
-                        <p className="font-mono text-xs text-ink-accent-strong font-bold mb-3">03</p>
-                        <h3 className="text-lg font-bold mb-2">Track your portfolio</h3>
-                        <p className="text-sm text-ink-muted leading-relaxed">Watch your holdings, gains, and losses update as the market moves.</p>
                     </div>
                 </div>
             </div>
