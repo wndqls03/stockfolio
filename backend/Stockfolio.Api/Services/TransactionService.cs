@@ -12,13 +12,17 @@ public class TransactionService
     }
     public void Buy(int userId, string stockSymbol, decimal quantity, decimal pricePerShare)
     {
+        if (string.IsNullOrWhiteSpace(stockSymbol))
+        {
+            throw new InvalidOperationException("Invalid stock symbol.");
+        }
         if(quantity <=0)
         {
             throw new InvalidOperationException("Quantity must be greater than zero.");
         }
         if(pricePerShare <=0)
         {
-            throw new InvalidOperationException("Invalid stock symbol.");
+            throw new InvalidOperationException("Price must be greater than zero.");
         }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
@@ -62,13 +66,17 @@ public class TransactionService
     }
     public void Sell(int userId, string stockSymbol, decimal quantity, decimal pricePerShare)
     {
+        if (string.IsNullOrWhiteSpace(stockSymbol))
+        {
+            throw new InvalidOperationException("Invalid stock symbol.");
+        }
         if (quantity <= 0)
         {
             throw new InvalidOperationException("Quantity must be greater than zero.");
         }
         if(pricePerShare <=0)
         {
-            throw new InvalidOperationException("Invalid stock symbol.");
+            throw new InvalidOperationException("Price must be greater than zero.");
         }
         var user = _dbContext.Users.Find(userId);
         if (user == null)
