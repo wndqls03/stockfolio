@@ -97,6 +97,52 @@ public class TransactionServiceTests
         var ex = Assert.Throws<InvalidOperationException>(
             () => service.Buy(user.Id, "AAPL", quantity: 1m, pricePerShare: 0m));
 
+        Assert.Equal("Price must be greater than zero.", ex.Message);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-100)]
+    public void Buy_NonPositivePrice_Theory_ThrowsInvalidOperationException(decimal price)
+    {
+        using var db = CreateDbContext();
+        var user = SeedUser(db);
+        var service = new TransactionService(db);
+
+        var ex = Assert.Throws<InvalidOperationException>(
+            () => service.Buy(user.Id, "AAPL", quantity: 1m, pricePerShare: price));
+
+        Assert.Equal("Price must be greater than zero.", ex.Message);
+    }
+
+    [Fact]
+    public void Sell_NonPositivePrice_ThrowsInvalidOperationException()
+    {
+        using var db = CreateDbContext();
+        var user = SeedUser(db);
+        db.Holdings.Add(new Holding { UserId = user.Id, Symbol = "AAPL", Quantity = 10m, AvgBuyPrice = 200m });
+        db.SaveChanges();
+        var service = new TransactionService(db);
+
+        var ex = Assert.Throws<InvalidOperationException>(
+            () => service.Sell(user.Id, "AAPL", quantity: 1m, pricePerShare: 0m));
+
+        Assert.Equal("Price must be greater than zero.", ex.Message);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData(null)]
+    public void Buy_InvalidSymbol_ThrowsInvalidOperationException(string? symbol)
+    {
+        using var db = CreateDbContext();
+        var user = SeedUser(db);
+        var service = new TransactionService(db);
+
+        var ex = Assert.Throws<InvalidOperationException>(
+            () => service.Buy(user.Id, symbol!, quantity: 1m, pricePerShare: 200m));
+
         Assert.Equal("Invalid stock symbol.", ex.Message);
     }
 
