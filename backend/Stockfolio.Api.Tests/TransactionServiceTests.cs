@@ -95,9 +95,22 @@ public class TransactionServiceTests
         var service = new TransactionService(db);
 
         var ex = Assert.Throws<InvalidOperationException>(
-            () => service.Buy(user.Id, "ZZZZZZ", quantity: 1m, pricePerShare: 0m));
+            () => service.Buy(user.Id, "AAPL", quantity: 1m, pricePerShare: 0m));
 
         Assert.Equal("Invalid stock symbol.", ex.Message);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-5)]
+    public void Sell_NonPositiveQuantity_ThrowsInvalidOperationException(decimal quantity)
+    {
+        using var db = CreateDbContext();
+        var user = SeedUser(db);
+        var service = new TransactionService(db);
+
+        Assert.Throws<InvalidOperationException>(
+            () => service.Sell(user.Id, "AAPL", quantity, pricePerShare: 250m));
     }
 
     [Fact]
