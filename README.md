@@ -2,7 +2,7 @@
 
 [![Backend Tests](https://github.com/wndqls03/stockfolio/actions/workflows/test.yml/badge.svg)](https://github.com/wndqls03/stockfolio/actions/workflows/test.yml)
 
-🔗 **Live Demo:** [https://stockfolio-nz.vercel.app](https://stockfolio-nz.vercel.app)
+🔗 **Live:** [https://stockfolio-nz.vercel.app](https://stockfolio-nz.vercel.app)
 
 StockFolio is a mock stock trading app that simulates a portfolio with a virtual account.
 
