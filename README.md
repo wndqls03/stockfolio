@@ -4,7 +4,7 @@
 
 🔗 **Live Demo:** [https://stockfolio-nz.vercel.app](https://stockfolio-nz.vercel.app)
 
-StockFolio is a mock stock trading app that simulates a portfolio with a virtual account.
+A full-stack mock stock trading simulator — search real stocks, trade with a virtual $100,000, and track your portfolio using live market data.
 
 ## Features
 - **Auth** — email/password sign-up and login (JWT). New accounts start with a virtual $100,000 in cash.
@@ -43,6 +43,7 @@ npm run dev
 > dotnet user-secrets set "ConnectionStrings:DefaultConnection" "server=localhost;port=3306;database=stockfolio;user=root;password=YOUR_PASSWORD"
 > dotnet user-secrets set "APIKeys:Finnhub_API" "YOUR_FINNHUB_KEY"
 > ```
+> In production (Railway), the same values are injected as environment variables instead of User Secrets.
 
 ## Tests
 
