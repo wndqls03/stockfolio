@@ -62,7 +62,7 @@ dotnet test
 - API keys stay server-side only — the frontend never sees them.
 
 ## Demonstration
-<img width="2492" height="2432" alt="stockfolio-nz vercel app_trade (3)" src="https://github.com/user-attachments/assets/3041473c-c854-4ebc-9e3a-475ffa8aec0e" />
 <img width="2492" height="2432" alt="stockfolio-nz vercel app_trade (2)" src="https://github.com/user-attachments/assets/ab86d20f-3ece-481d-8707-c68cefe913fd" />
+<img width="2492" height="2432" alt="stockfolio-nz vercel app_trade (3)" src="https://github.com/user-attachments/assets/3041473c-c854-4ebc-9e3a-475ffa8aec0e" />
 <img width="2492" height="2432" alt="stockfolio-nz vercel app_trade (1)" src="https://github.com/user-attachments/assets/7f82226d-71af-4bbe-9513-6ad792f89e5a" />
 
